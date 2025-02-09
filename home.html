@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="content">
+        <h1 id="greet"></h1>
+        <h1 style="margin: 10%; font-size: 4rem;">Hello! Nice to see you</h1>
+        <p style="margin: 10%; font-size: 1.5rem;">I welcome you to my Landing Page.It is responsive to every device-width</p>
+    </div>
+    <script>
+        function letsGreet() {
+            let t = new Date();
+            let now = t.getHours()
+            let greeting;
+            if (now >= 5 && now < 12) {
+                greeting = "Good Morning!";
+            }
+            else if(now>=12 && now<=16){
+                greeting="Good Afternoon!";
+            }
+            else{
+                greeting = 'Good Evening!'
+            }
+            return greeting;
+            console.log(greeting);
+        }
+        document.getElementById("greet").innerText=letsGreet();
+
+    </script>
+</body>
+
+</html>

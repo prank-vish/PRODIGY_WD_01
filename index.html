@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page</title>
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+    
+    <nav>
+        <div id="nav">
+            <button class="navcom" id="home" onclick="clicked(this)">Home</a></button>
+            <button class="navcom" id="about" onclick="clicked(this)">About</a></button>
+            <button class="navcom" id="contact" onclick="clicked(this)">Contact</a></button>
+        </div>
+    </nav>
+    <main id="main">
+        
+    </main>
+    <script>
+        let index = document.getElementById("index");
+        let prevButton = null;
+        function clicked(buttonid){
+            if(prevButton){
+                prevButton.style.backgroundColor="";
+                prevButton.style.color="";
+            }
+            let fileload = buttonid.id + ".html";
+            fetch(fileload)
+            .then(response =>{
+                if(!response.ok){
+                    throw new Error(`HTTP error status ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html =>{
+                document.getElementById("main").innerHTML=html
+            })
+            .catch(err=>{
+                console.error("Error in loading ",err);
+                document.getElementById("main").innerHTML="<p>Error in Loading content. Please try again later. </p>"
+            });
+            buttonid.style.backgroundColor="black";
+            buttonid.style.color="orange"
+            prevButton=buttonid
+        }
+        window.onload = ()=>{
+            clicked(home);
+        };
+    </script>
+
+</body>
+</html>
